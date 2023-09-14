@@ -15,67 +15,67 @@ function Sidebar() {
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
                 <li>
-                    <NavLink to="/track/dashboard" className="nav-link link-body-emphasis d-flex align-items-baseline" activeClassName="active">
+                    <NavLink to="/track/dashboard" className="nav-link link-body-emphasis d-flex align-items-baseline" activeclassname="active">
                         <FontAwesomeIcon
                             className="me-3"
                             icon={faHome}
                         />
-                        <span class="fs-5">Dashboard</span>
+                        <span className="fs-5">Dashboard</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/track/products" className="nav-link link-body-emphasis d-flex align-items-baseline" activeClassName="active">
+                    <NavLink to="/track/products" className="nav-link link-body-emphasis d-flex align-items-baseline" activeclassname="active">
                         <FontAwesomeIcon
                             className="me-3"
                             icon={faBox}
                         />
-                        <span class="fs-5">Products</span>
+                        <span className="fs-5">Products</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/track/orders" className="nav-link link-body-emphasis d-flex align-items-baseline" activeClassName="active">
+                    <NavLink to="/track/orders" className="nav-link link-body-emphasis d-flex align-items-baseline" activeclassname="active">
                         <FontAwesomeIcon
                             className="me-3"
                             icon={faTruckLoading}
                         />
-                        <span class="fs-5">Orders</span>
+                        <span className="fs-5">Orders</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/track/purchases" className="nav-link link-body-emphasis d-flex align-items-baseline" activeClassName="active">
+                    <NavLink to="/track/purchases" className="nav-link link-body-emphasis d-flex align-items-baseline" activeclassname="active">
                         <FontAwesomeIcon
                             className="me-3"
                             icon={faCashRegister}
                         />
-                        <span class="fs-5">Purchases</span>
+                        <span className="fs-5">Purchases</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/track/sales" className="nav-link link-body-emphasis d-flex align-items-baseline" activeClassName="active">
+                    <NavLink to="/track/sales" className="nav-link link-body-emphasis d-flex align-items-baseline" activeclassname="active">
                         <FontAwesomeIcon
                             className="me-3"
                             icon={faMoneyBill1Wave}
                         />
-                        <span class="fs-5">Sales</span>
+                        <span className="fs-5">Sales</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/track/customers" className="nav-link link-body-emphasis d-flex align-items-baseline" activeClassName="active">
+                    <NavLink to="/track/customers" className="nav-link link-body-emphasis d-flex align-items-baseline" activeclassname="active">
                         <FontAwesomeIcon
                             className="me-3"
                             icon={faUsers}
                         />
-                        <span class="fs-5">Customers</span>
+                        <span className="fs-5">Customers</span>
                     </NavLink>
                 </li>
 
                 <li>
-                    <NavLink to="/track/suppliers" className="nav-link link-body-emphasis d-flex align-items-baseline" activeClassName="active">
+                    <NavLink to="/track/suppliers" className="nav-link link-body-emphasis d-flex align-items-baseline" activeclassname="active">
                         <FontAwesomeIcon
                             className="me-3"
                             icon={faAddressBook}
                         />
-                        <span class="fs-5">Suppliers</span>
+                        <span className="fs-5">Suppliers</span>
                     </NavLink>
                 </li>
             </ul>
