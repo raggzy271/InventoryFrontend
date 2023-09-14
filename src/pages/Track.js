@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/track/Sidebar';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 function Track() {
@@ -17,7 +17,7 @@ function Track() {
                 <Col md={3}>
                     <Sidebar />
                 </Col>
-                <Col md={9}>
+                <Col md={9} className="py-3">
                     <Outlet />
                 </Col>
             </Row>
