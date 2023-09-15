@@ -27,8 +27,7 @@ function Products() {
     }
   };
 
-  // Fetch the list of products from the API
-  useEffect(() => {
+  const getAllProducts = () =>
     axios.get('http://localhost:5195/api/Product/GetAllProduct', config)
       .then((response) => {
         setProducts(response.data);
@@ -37,7 +36,9 @@ function Products() {
         console.error('Error fetching products:', error);
         addToast('Error fetching products.', 'danger');
       });
-  }, []);
+
+  // Fetch the list of products from the API
+  useEffect(() => { getAllProducts() }, []);
 
   // Function to handle adding a product
   const handleAddProduct = (product) => {
@@ -45,8 +46,7 @@ function Products() {
     axios
       .post("http://localhost:5195/api/Product/AddProduct", product, config)
       .then((response) => {
-        // Update the list of products
-        setProducts([...products, product]);
+        getAllProducts();
         addToast("Product added successfully.", "success");
       })
       .catch((error) => {
@@ -73,10 +73,7 @@ function Products() {
     axios
       .put("http://localhost:5195/api/Product/UpdateProduct", product, config)
       .then((response) => {
-        // Update the list of products
-        setProducts(
-          products.map((p) => (p.productId === product.productId ? product : p))
-        );
+        getAllProducts();
         addToast("Product updated successfully.", "success");
       })
       .catch((error) => {
@@ -103,10 +100,7 @@ function Products() {
     axios
       .delete("http://localhost:5195/api/Product/DeleteProduct?productId=" + product.productId, config)
       .then((response) => {
-        // Remove the product from the list
-        setProducts(
-          products.filter(p => p.productId != product.productId)
-        );
+        getAllProducts();
         addToast("Product deleted successfully.", "success");
       })
       .catch((error) => {
@@ -181,7 +175,7 @@ function Products() {
         onEdit={handleEditProduct}
         productToEdit={productToEdit}
       />
-      <DeleteConfirmationModal name={productToDelete ? productToDelete.name : ''} show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onConfirm={handleConfirmDelete} toDelete={productToDelete} />
+      <DeleteConfirmationModal name={productToDelete ? productToDelete.name : ''} show={showDeleteModal} onHide={handleHideDeleteModal} onConfirm={handleConfirmDelete} toDelete={productToDelete} />
     </main>
   );
 }
