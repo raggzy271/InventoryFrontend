@@ -20,8 +20,8 @@ function Login() {
 
     // Create a data object with the form input values
     const data = {
-      email,
-      password,
+      Email: email,
+      Password: password,
     };
 
     try {
@@ -32,7 +32,7 @@ function Login() {
         // Successful login
         console.log('Login successful');
         addToast("Login successful", "success");
-        navigate.push('/track');
+        navigate('/track');
       } else {
         console.error('Login failed');
         addToast("Login failed", "danger");
