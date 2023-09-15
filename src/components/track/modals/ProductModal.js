@@ -76,8 +76,8 @@ export function EditProductModal({ show, onHide, onEdit, productToEdit }) {
   // Populate the form fields when productToEdit changes
   useEffect(() => {
     if (productToEdit) {
-      setName(productToEdit.Name);
-      setPrice(productToEdit.Price.toString());
+      setName(productToEdit.name);
+      setPrice(productToEdit.price.toString());
     }
   }, [productToEdit]);
 
