@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
+// import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Track from "./pages/Track";
 import NotFound from "./pages/404";
@@ -26,7 +26,7 @@ function App() {
       <ToastProvider>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/signup" element={<SignUp />} />
+          {/* <Route exact path="/signup" element={<SignUp />} /> */}
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/track" element={<Track />}>
             <Route exact path="/track/dashboard" element={<Dashboard />} />
