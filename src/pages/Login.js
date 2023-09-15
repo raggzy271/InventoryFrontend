@@ -32,6 +32,7 @@ function Login() {
         // Successful login
         console.log('Login successful');
         addToast("Login successful", "success");
+        localStorage.setItem('inventory-token', response.data);
         navigate('/track');
       } else {
         console.error('Login failed');

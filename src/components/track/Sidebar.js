@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressBook,
@@ -12,6 +12,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Sidebar() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem('inventory-token');
+    navigate('/');
+  };
+
   return (
     <div
       className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary"
@@ -101,12 +108,7 @@ function Sidebar() {
         </li>
       </ul>
       <hr />
-      <div>
-        <p className="text-center">
-          Logged in as <strong>User Name</strong> (user@email.com)
-        </p>
-        <button className="btn btn-danger w-100">Logout</button>
-      </div>
+      <button className="btn btn-danger w-100" onClick={logout}>Logout</button>
     </div>
   );
 }

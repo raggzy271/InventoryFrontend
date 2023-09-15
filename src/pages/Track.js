@@ -6,8 +6,13 @@ import { Outlet, useNavigate } from 'react-router-dom';
 function Track() {
     const navigate = useNavigate();
     React.useEffect(() => {
+        if (!localStorage.getItem('inventory-token')) {
+            navigate('/login', { replace: true });
+            return;
+        }
         if (window.location.pathname === '/track') {
             navigate('/track/dashboard', { replace: true });
+            return;
         }
     }, [navigate]);
 
