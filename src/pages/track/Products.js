@@ -8,14 +8,21 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "../../services/ToastService";
 import axios from "axios";
-import DeleteConfirmationService, { useDeleteConfirmationModal } from "../../services/DeleteConfirmationService";
+import DeleteConfirmationModal from "../../components/track/modals/DeleteConfirmationModal";
 
 function Products() {
   const [products, setProducts] = useState([]);
+  const [productToEdit, setProductToEdit] = useState(null);
+  const [productToDelete, setProductToDelete] = useState(null);
+
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const { addToast } = useContext(ToastContext);
 
+  // Fetch the list of products from the API
   useEffect(() => {
-    // Fetch the list of products from the API
     // axios.get('http://localhost:5195/api/Product/GetAllProduct')
     //     .then((response) => {
     //         setProducts(response.data);
@@ -47,10 +54,6 @@ function Products() {
       },
     ]);
   }, []);
-
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [productToEdit, setProductToEdit] = useState(null);
 
   // Function to handle adding a product
   const handleAddProduct = (product) => {
@@ -93,16 +96,39 @@ function Products() {
         addToast("Product updated successfully.", "success");
       })
       .catch((error) => {
-        console.error("Error fetching products:", error);
+        console.error("Error updating product:", error);
         addToast("Error updating product.", "danger");
       });
   };
 
-  const openConfirmationModal = useDeleteConfirmationModal();
+  // Function to handle opening the delete modal
+  const handleShowDeleteModal = (product) => {
+    setProductToDelete(product);
+    setShowDeleteModal(true);
+  };
 
-  const handleDeleteClick = (productName, apiUrl) => {
-    const entityName = "Example Entity"; // Replace with the actual entity name
-    openConfirmationModal(entityName);
+  // Function to handle hiding the delete modal
+  const handleHideDeleteModal = () => {
+    setProductToDelete(null);
+    setShowDeleteModal(false);
+  }
+
+  // Function to handle deleting a product
+  const handleConfirmDelete = (product) => {
+    // DELETE product request to the API
+    axios
+      .delete("http://localhost:5195/api/Product/DeleteProduct?productId=" + product.ProductId)
+      .then((response) => {
+        // Remove the product from the list
+        setProducts(
+          products.filter(p => p.ProductId != product.ProductId)
+        );
+        addToast("Product deleted successfully.", "success");
+      })
+      .catch((error) => {
+        console.error("Error deleting product:", error);
+        addToast("Error deleting product.", "danger");
+      });
   };
 
   return (
@@ -149,7 +175,7 @@ function Products() {
                     className="btn btn-danger"
                     title="Delete Product"
                     onClick={() =>
-                      handleDeleteClick(product.Name, product.ProductId)
+                      handleShowDeleteModal(product)
                     }
                   >
                     <FontAwesomeIcon icon={faTrashAlt} />
@@ -171,6 +197,7 @@ function Products() {
         onEdit={handleEditProduct}
         productToEdit={productToEdit}
       />
+      <DeleteConfirmationModal name={productToDelete ? productToDelete.Name : ''} show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onConfirm={handleConfirmDelete} toDelete={productToDelete} />
     </main>
   );
 }
