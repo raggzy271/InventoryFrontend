@@ -91,8 +91,8 @@ export function EditProductModal({ show, onHide, onEdit, productToEdit }) {
     // Create an updated product object
     const updatedProduct = {
       ...productToEdit, // Preserve other properties
-      Name: name,
-      Price: parseFloat(price),
+      name: name,
+      price: parseFloat(price),
     };
 
     // Call the onEdit function with the updated product
